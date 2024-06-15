@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
-use IEEE.std_logic_unsigned.ALL; -- Pas super utile vu que numeric a deja et les signed et le unsigned mais par precaution pour eviter les bug on laisse
+-- use IEEE.std_logic_unsigned.ALL; -- Pas super utile vu que numeric a deja et les signed et le unsigned mais par precaution pour eviter les bug on laisse
 
 entity UAL_Unite_Arithmetique_et_Logique_entity is
     port 
@@ -57,17 +57,32 @@ begin
         Z_UAL <= '1';
     end if;
 
--- Retenu
-    if (((OP_UAL = "000") and (A_UAL(31) = B_UAL(31))) or ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31))))  then
-        if ((std_logic_vector (signed(A_UAL)+signed(B_UAL)) > x"7FFF_FFFF") or (std_logic_vector (signed(A_UAL)+signed(B_UAL)) < x"8000_0000")) then -- On verifie si la valeur entiere de A + B depasse le max ou min
-            C_UAL <= '1';
-        end if;
-    end if;
+-- Retenu Bis
+-- if (((OP_UAL = "000") and (A_UAL(31) = B_UAL(31))) or ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31))))  then
+--        if (((std_logic_vector (signed(A_UAL)+signed(B_UAL)) > x"7FFF_FFFF") and (B_UAL(31) = 0)) or (std_logic_vector (signed(A_UAL)+signed(B_UAL)) < x"8000_0000")) then -- On verifie si la valeur entiere de A + B depasse le max ou min
+--            C_UAL <= '1';
+--        end if;
+--    end if;
+--
+--    if (((OP_UAL = "010")) and (A_UAL(31) /= B_UAL(31))) and (A_UAL(31) = B_UAL(31)) then 
+--        if ((std_logic_vector (signed(A_UAL)+signed(B_UAL)) > x"7FFF_FFFF") or (std_logic_vector (signed(A_UAL)+signed(B_UAL)) < x"8000_0000")) then -- On verifie si la valeur entiere de A - B depasse le max ou min
+--            C_UAL <= '1';
+--        end if;
+--    end if;
 
-    if (((OP_UAL = "010")) and (A_UAL(31) /= B_UAL(31))) and (A_UAL(31) = B_UAL(31)) then 
-        if ((std_logic_vector (signed(A_UAL)+signed(B_UAL)) > x"7FFF_FFFF") or (std_logic_vector (signed(A_UAL)+signed(B_UAL)) < x"8000_0000")) then -- On verifie si la valeur entiere de A - B depasse le max ou min
+-- Retenu Tris
+
+--    if ((OP_UAL = "000"
+
+--   if ((OP_UAL = "000" or OP_UAL = "010") and ((A_UAL(30) = B_UAL(30)) ) -- On verfie le bit de plus gros poids
+
+--    C_UAL <= '1';
+
+--   end if; 
+
+-- Retenu Tetra
+    if (((OP_UAL = "000") and (A_UAL(31) = B_UAL(31) and B_UAL(31)/=B_UAL(30) and B_UAL(30) = A_UAL(30))) or ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31) and A_UAL(31)/=A_UAL(30) and B_UAL(30) /= A_UAL(30))))  then
             C_UAL <= '1';
-        end if;
     end if;
 
 -- Negatif 
