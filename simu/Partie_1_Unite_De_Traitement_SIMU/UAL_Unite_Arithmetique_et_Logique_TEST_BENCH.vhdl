@@ -49,33 +49,33 @@ Test_bench_UAL : process
 				-- Re demarrage de A et B
 				SIGNAL_Test_Bench_A_UAL <= (others => '0');
 				SIGNAL_Test_Bench_B_UAL <= (others => '0');
-				SIGNAL_Test_Bench_A_UAL(31) <= not SIGNAL_Test_Bench_A_UAL(31);
-				SIGNAL_Test_Bench_B_UAL(31) <= not SIGNAL_Test_Bench_B_UAL(31);
+				SIGNAL_Test_Bench_A_UAL(31) <= not SIGNAL_Test_Bench_A_UAL(31); -- On fait ensuite le test avec les negatifs
+				SIGNAL_Test_Bench_B_UAL(31) <= not SIGNAL_Test_Bench_B_UAL(31); -- Idem
 				
 				-- Boucle A
-				for ii in 0 to 7 loop
-					SIGNAL_Test_Bench_A_UAL(ii*4) <= '1'; 
-					--report "Test : A = " & to_string(SIGNAL_Test_Bench_S_UAL);
-					write (L, lf & "Test : A =");
-					write (L, to_integer(unsigned(SIGNAL_Test_Bench_S_UAL)));
-					wait for 10 ns;
-				end loop;
-				
-				wait for 80 ns;
-				
-				-- Boucle B
-				for iii in 0 to 7 loop
-					SIGNAL_Test_Bench_B_UAL(iii*4) <= '1'; 
+				for iii in 0 to 7 loop -- Pour la verification de la boucle on test un bit sur 4 c est suffisant pour voir les erreurs
+					wait for 10 ns; -- On marque une pause pour mieux distinguer les zones sur le chronogramme
+					SIGNAL_Test_Bench_A_UAL(iii*4) <= '1'; 
 					--report "Test : B = " & to_string(SIGNAL_Test_Bench_S_UAL);					
-					wait for 10 ns; 
+					wait for 1 ns; 
+
+					-- Boucle B
+					for ii in 0 to 7 loop
+						SIGNAL_Test_Bench_B_UAL(ii*4) <= '1'; 
+						--report "Test : A = " & to_string(SIGNAL_Test_Bench_S_UAL);
+						write (L, lf & "Test : B ="); -- Propose par DOUZE Yann mais je crois que ca n a pas l effet escompter
+						write (L, to_integer(unsigned(SIGNAL_Test_Bench_S_UAL))); -- Idem
+						wait for 1 ns;
+					end loop;
+				
 				end loop;
 				
-				wait for 80 ns;
+				wait for 20 ns; -- On marque une pause pour mieux distinguer la fin sur chronogramme
 				
             end loop;
         end loop;
         
-        wait;  -- Attendre la fin de la simulation
+        wait;
     end process Test_bench_UAL;   
 	
 end test_bench_UAL_architecture;
