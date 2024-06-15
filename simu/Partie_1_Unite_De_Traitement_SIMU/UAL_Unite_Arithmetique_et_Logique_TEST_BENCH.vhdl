@@ -36,19 +36,21 @@ begin
 Test_bench_UAL : process 
 	
 	variable L : line;
-	
-    begin
+    begin		
+		
+		SIGNAL_Test_Bench_A_UAL <= (others => '0');
+		SIGNAL_Test_Bench_B_UAL <= (others => '0');
+		SIGNAL_Test_Bench_A_UAL(31) <= '1'; -- Pour commencer par les positifs (on inverse le bit de signe a l entree)
+		SIGNAL_Test_Bench_B_UAL(31) <= '1'; -- Pour commencer par les positifs (on inverse le bit de signe a l entree)
 
         -- Boucle pour les valeurs d'OP
         for i in 0 to 7 loop
             SIGNAL_Test_Bench_OP_UAL <= std_logic_vector(to_unsigned(i, 3));  
-            wait for 160 ns;
+            wait for 60 ns;
 			
 			for N in 0 to 1 loop -- Pour tester les nombres positifs et negatif
 				
 				-- Re demarrage de A et B
-				SIGNAL_Test_Bench_A_UAL <= (others => '0');
-				SIGNAL_Test_Bench_B_UAL <= (others => '0');
 				SIGNAL_Test_Bench_A_UAL(31) <= not SIGNAL_Test_Bench_A_UAL(31); -- On fait ensuite le test avec les negatifs
 				SIGNAL_Test_Bench_B_UAL(31) <= not SIGNAL_Test_Bench_B_UAL(31); -- Idem
 				
@@ -68,10 +70,24 @@ Test_bench_UAL : process
 						wait for 2 ns;
 					end loop;
 				end loop;
-				wait for 20 ns; -- On marque une pause pour mieux distinguer la fin sur chronogramme
+				
+				SIGNAL_Test_Bench_A_UAL <= (others => '0');
+				SIGNAL_Test_Bench_B_UAL <= (others => '0');
             end loop;
         end loop;
-        wait;
+        wait for 60 ns;
+
+		--Test Add somme sans probleme
+		SIGNAL_Test_Bench_OP_UAL <= "000";
+		SIGNAL_Test_Bench_A_UAL <= x"0000_0030";
+		SIGNAL_Test_Bench_B_UAL <= x"0000_010A";
+        wait for 10 ns;
+
+        assert (SIGNAL_Test_Bench_S_UAL = x"0000_013A") report "Test ADD normal" severity error;
+
+
+
+
+		wait;
     end process Test_bench_UAL;   
-	
 end test_bench_UAL_architecture;

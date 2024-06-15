@@ -57,33 +57,20 @@ begin
         Z_UAL <= '1';
     end if;
 
--- Retenu Bis
--- if (((OP_UAL = "000") and (A_UAL(31) = B_UAL(31))) or ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31))))  then
---        if (((std_logic_vector (signed(A_UAL)+signed(B_UAL)) > x"7FFF_FFFF") and (B_UAL(31) = 0)) or (std_logic_vector (signed(A_UAL)+signed(B_UAL)) < x"8000_0000")) then -- On verifie si la valeur entiere de A + B depasse le max ou min
---            C_UAL <= '1';
---        end if;
---    end if;
---
---    if (((OP_UAL = "010")) and (A_UAL(31) /= B_UAL(31))) and (A_UAL(31) = B_UAL(31)) then 
---        if ((std_logic_vector (signed(A_UAL)+signed(B_UAL)) > x"7FFF_FFFF") or (std_logic_vector (signed(A_UAL)+signed(B_UAL)) < x"8000_0000")) then -- On verifie si la valeur entiere de A - B depasse le max ou min
---            C_UAL <= '1';
---        end if;
---    end if;
-
--- Retenu Tris
-
---    if ((OP_UAL = "000"
-
---   if ((OP_UAL = "000" or OP_UAL = "010") and ((A_UAL(30) = B_UAL(30)) ) -- On verfie le bit de plus gros poids
-
---    C_UAL <= '1';
-
---   end if; 
-
--- Retenu Tetra
-    if (((OP_UAL = "000") and (A_UAL(31) = B_UAL(31) and B_UAL(31)/=B_UAL(30) and B_UAL(30) = A_UAL(30))) or ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31) and A_UAL(31)/=A_UAL(30) and B_UAL(30) /= A_UAL(30))))  then
-            C_UAL <= '1';
+-- Retenu addition
+    if (((OP_UAL = "000") and (A_UAL(31) = B_UAL(31) and B_UAL(31)/=B_UAL(30) and B_UAL(30) = A_UAL(30)))) then -- or ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31) and A_UAL(31)/=A_UAL(30) and B_UAL(30) /= A_UAL(30))))  then
+        C_UAL <= '1';
     end if;
+
+-- Retenu soustraction
+    if ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31)) and (S_SIGNAL_UAL(31) /= A_UAL(31))) then
+        V_UAL <= '1';
+    end if;
+
+-- Détection du zéro
+if (S_SIGNAL_UAL = x"00000000") then 
+    Z_UAL <= '1';
+end if;
 
 -- Negatif 
     N_UAL <= S_SIGNAL_UAL(1); -- Aide par Monsieur DOUZE Yann car j avais fait complique pour rien
