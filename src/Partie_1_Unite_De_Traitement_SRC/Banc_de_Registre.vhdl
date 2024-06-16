@@ -13,7 +13,7 @@ entity Banc_de_Registre_entity is
         Ra_BR, Rb_BR, Rw_BR : in std_logic_vector(3 downto 0);
         W_BR: in std_logic_vector(31 downto 0);
 
-        A_BR, B_BR : out std_logic_vector(31 downto 0);
+        A_BR, B_BR : out std_logic_vector(31 downto 0)
     );
 end Banc_de_Registre_entity;
 
@@ -28,12 +28,12 @@ signal B_SIGNAL_RB : std_logic_vector(31 downto 0) := (others => '0');
 
 signal Registre_0_RB, Registre_1_RB, Registre_2_RB ,Registre_3_RB ,Registre_4_RB ,Registre_5_RB ,Registre_6_RB ,Registre_7_RB ,Registre_8_RB ,Registre_9_RB ,Registre_10_RB ,Registre_11_RB ,Registre_12_RB ,Registre_13_RB ,Registre_14_RB ,Registre_15_RB : std_logic_vector(31 downto 0) := (others => '0');
 
--- Initialisation des sorties
-A_BR <= (others => '0');
-B_BR <= (others => '0');
 -- Content
 begin
-    S_UAL <= S_SIGNAL_UAL;
+
+    -- Initialisation des sorties
+    A_BR <= (others => '0');
+    B_BR <= (others => '0');
 
     process (Ra_BR,Rb_BR) -- Combinatoire lecture   -- Je ne suis pas sur qu un petit if Enable n aurait pas ete de trop
     begin
@@ -82,12 +82,10 @@ begin
 
     end process;
 
-    process (Clk_BR,Rst_BR,) -- Synchrone Ecriture 
-    begin
+    process (Clk_BR,Rst_BR) -- Synchrone Ecriture 
 
-    end process;
-        
-        if (Rst_BR = '1') then  -- Re Initialisation des Registres (et sortie par l occasion meme si combinatoire dans le doute)
+    begin
+        if ( Rst_BR = '1') then  -- Re Initialisation des Registres (et sortie par l occasion meme si combinatoire dans le doute)
             Registre_0_RB <= (others => '0');
             Registre_1_RB <= (others => '0');
             Registre_2_RB <= (others => '0');
@@ -109,7 +107,7 @@ begin
             B_BR <= (others => '0');
 
         elsif (Rst_BR = '0') then
-            if rising_edge(clk) then
+            if rising_edge(Clk_BR) then
                 if (WE_BR = '1') then
                     case Rw_BR is 
                         when "0000" => Registre_0_RB <= W_BR;  -- Registre 0
@@ -129,9 +127,9 @@ begin
                         when "1110" => Registre_14_RB <= W_BR; -- Registre 14
                         when "1111" => Registre_15_RB <= W_BR; -- Registre 15
             
-                        when others => Registre_0_RB  <= W_BR;;   -- Dans le doute mais ne doit pas arriver
+                        when others => Registre_0_RB  <= W_BR;   -- Dans le doute mais ne doit pas arriver
                     end case;
-    
+                    
                 end if;
             end if;
         end if;
