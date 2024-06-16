@@ -4,7 +4,7 @@ K3
 cModel Technology
 Z0 dC:\Users\vladi\Desktop\GrF_Vladislav_BALAYAN\simu\Partie_1_Unite_De_Traitement_SIMU\Banc_de_Registre
 Ebanc_de_registre_entity
-Z1 w1718570195
+Z1 w1718572531
 Z2 DPx3 std 6 textio 0 22 m2KQDRRhmF833<<DjYdL70
 Z3 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
 Z4 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
@@ -26,6 +26,7 @@ Z10 DEx4 work 23 banc_de_registre_entity 0 22 9zUkgWK9no]?=R:oYX47n2
 l33
 L21
 VB6h79FM>X[B`Y?3M`hlPF3
+!s100 0KeL?Q2aZaL:2e8P>EAg83
 R7
 31
 Z11 Mx3 4 ieee 14 std_logic_1164
@@ -33,9 +34,8 @@ Mx2 4 ieee 11 numeric_std
 Z12 Mx1 3 std 6 textio
 R8
 R9
-!s100 0KeL?Q2aZaL:2e8P>EAg83
 Etest_bench_banc_de_registre_entity
-Z13 w1718570661
+Z13 w1718572788
 Z14 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
 Z15 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
 R3
@@ -61,8 +61,8 @@ R4
 Z19 DEx4 work 34 test_bench_banc_de_registre_entity 0 22 <`Lzb6Rm`m=?ekI4RSoIU3
 l23
 L10
-V^c7Y=OHM17Jn=9PM`8CM;0
-!s100 =Zzb8X6`hO]eJmD0iO9lW0
+Vn>Fcdg[eI9Cd`ah?QY_ck3
+!s100 9S0ldc[nG:eT=hG:Bn@OA0
 R7
 31
 Z20 Mx5 4 ieee 14 std_logic_1164

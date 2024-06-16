@@ -58,14 +58,16 @@ Test_bench_Banc_de_Registre : process
         assert (SIGNAL_Test_Bench_A_BR = x"0000_0000") report "Test Ecriture sans registre de sortie : Erreur resutat" severity error;
 		wait for 3 ns;
 
-		SIGNAL_Test_Bench_WE_BR <= '1';
+		-- TEST Lecture 
+	-- Test Lecture Simple
 		SIGNAL_Test_Bench_W_BR <= x"AAAA_1111";
 		SIGNAL_Test_Bench_Rw_BR <= "0001";
 		SIGNAL_Test_Bench_Rb_BR <= "1111";
 		wait for 12 ns; -- Protection des asserts attente periode horloge
         assert (SIGNAL_Test_Bench_B_BR = x"4444_4444") report "Test Ecriture avec registre de sortie B : Erreur resutat" severity error;
 		
-		SIGNAL_Test_Bench_WE_BR <= '1';
+		-- TEST Lecture 
+	-- Test Lecture apres Ecriture
 		SIGNAL_Test_Bench_W_BR <= x"0000_1001";
 		SIGNAL_Test_Bench_Rw_BR <= "0010";
 		SIGNAL_Test_Bench_Ra_BR <= "1111";
@@ -74,16 +76,43 @@ Test_bench_Banc_de_Registre : process
         assert (SIGNAL_Test_Bench_A_BR = x"4444_4444") report "Test Ecriture avec registre simultane de sortie A : Erreur resutat" severity error;
 		assert (SIGNAL_Test_Bench_B_BR = x"AAAA_1111") report "Test Ecriture avec registre simultane de sortie B : Erreur resutat" severity error;
 		
-		wait for 12 ns;
-
 		-- TEST Lecture 
-	
-	-- Test Lecture Simple
-
+	-- Test Lecture avant Ecriture
+		SIGNAL_Test_Bench_W_BR <= x"0000_10AA";
+		SIGNAL_Test_Bench_Rw_BR <= "0011";
+		SIGNAL_Test_Bench_Ra_BR <= "0011";
+		SIGNAL_Test_Bench_Rb_BR <= "0010";
+		wait for 12 ns; -- Protection des asserts attente periode horloge
+		assert (SIGNAL_Test_Bench_A_BR = x"0000_0000") report "Test Ecriture avec registre simultane et avant ecriture de sortie A : Erreur resutat" severity error;
+		assert (SIGNAL_Test_Bench_B_BR = x"0000_1001") report "Test Ecriture avec registre simultane et avant ecriture de sortie B : Erreur resutat" severity error;
+		
 	-- Test Lecture Reset
+		SIGNAL_Test_Bench_Rst_BR <= '1';
+		wait for 2 ns;
+		SIGNAL_Test_Bench_Rst_BR <= '0';
+		wait for 4 ns;
+		SIGNAL_Test_Bench_WE_BR <= '1';
+		SIGNAL_Test_Bench_W_BR <= x"0000_10A1";
+		SIGNAL_Test_Bench_Rw_BR <= "1100";
+		wait for 3 ns;
+		SIGNAL_Test_Bench_Ra_BR <= "1100";
+		SIGNAL_Test_Bench_Rb_BR <= "0010";
+		wait for 19 ns; -- Protection des asserts attente periode horloge
+		assert (SIGNAL_Test_Bench_A_BR = x"0000_10A1") report "Test Ecriture apres Reset A : Erreur resutat" severity error;
+		assert (SIGNAL_Test_Bench_B_BR = x"0000_0000") report "Test Ecriture apres Reset B : Erreur resutat" severity error;
+		wait for 1 ns;
 
 	-- Test Lecture Enable sans ecriture
-
+		SIGNAL_Test_Bench_WE_BR <= '0';
+		SIGNAL_Test_Bench_W_BR <= x"0000_0002";
+		SIGNAL_Test_Bench_Rw_BR <= "0110";
+		wait for 12 ns; -- Protection des asserts attente periode horloge
+		SIGNAL_Test_Bench_Ra_BR <= "0110";
+		SIGNAL_Test_Bench_Rb_BR <= "0100";
+		wait for 12 ns; -- Protection des asserts attente periode horloge
+		assert (SIGNAL_Test_Bench_A_BR = x"0000_0000") report "Test sans Ecriture A : Erreur resutat" severity error;
+		assert (SIGNAL_Test_Bench_B_BR = x"0000_10AA") report "Test sans Ecriture B : Erreur resutat" severity error;
+	
 		wait;
     end process Test_bench_Banc_de_Registre;   
 end test_bench_Banc_de_Registre_architecture;
