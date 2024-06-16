@@ -52,28 +52,23 @@ begin
         V_UAL <= '1';
     end if;
 
--- Zero
+-- Detection Zero
     if (S_SIGNAL_UAL = x"0000_0000") then 
         Z_UAL <= '1';
     end if;
 
--- Retenu addition
+-- Retenu Addition
     if (((OP_UAL = "000") and (A_UAL(31) = B_UAL(31) and B_UAL(31)/=B_UAL(30) and B_UAL(30) = A_UAL(30)))) then -- or ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31) and A_UAL(31)/=A_UAL(30) and B_UAL(30) /= A_UAL(30))))  then
         C_UAL <= '1';
     end if;
 
--- Retenu soustraction
-    if ((OP_UAL = "010") and (A_UAL(31) /= B_UAL(31)) and (S_SIGNAL_UAL(31) /= A_UAL(31))) then
-        V_UAL <= '1';
+-- Retenu Soustration
+    if (((OP_UAL = "010") and A_UAL(31) /= B_UAL(31)) and (S_SIGNAL_UAL(31) /= A_UAL(31))) then
+        C_UAL <= '1';
     end if;
 
--- Détection du zéro
-if (S_SIGNAL_UAL = x"00000000") then 
-    Z_UAL <= '1';
-end if;
-
 -- Negatif 
-    N_UAL <= S_SIGNAL_UAL(1); -- Aide par Monsieur DOUZE Yann car j avais fait complique pour rien
+    N_UAL <= S_SIGNAL_UAL(31); -- Aide par Monsieur DOUZE Yann car j avais fait complique pour rien
 
 end process;
 end UAL_architecture;
