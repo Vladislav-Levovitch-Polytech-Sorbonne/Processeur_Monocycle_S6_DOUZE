@@ -19,13 +19,14 @@ end Banc_de_Registre_entity;
 
 architecture Banc_de_Registre_architecture of Banc_de_Registre_entity is
 -- Signal
-signal S_SIGNAL_RB : std_logic_vector(31 downto 0) := (others => '0');
+signal A_SIGNAL_RB : std_logic_vector(31 downto 0) := (others => '0');
+signal B_SIGNAL_RB : std_logic_vector(31 downto 0) := (others => '0');
 
 --type t_Registre is array (0 to 15) of std_logic_vector(31 downto 0); -- Ca existe mais je ne suis pas tres a l aise avec
 --signal Registres_RB : t_Registre := (others => (others => '0'));
+-- Pour le registre je ne suis pas fan de mettre un tableau de 32 bits je prefere les avoir en seul meme si ca ne change presque rien
 
 signal Registre_0_RB, Registre_1_RB, Registre_2_RB ,Registre_3_RB ,Registre_4_RB ,Registre_5_RB ,Registre_6_RB ,Registre_7_RB ,Registre_8_RB ,Registre_9_RB ,Registre_10_RB ,Registre_11_RB ,Registre_12_RB ,Registre_13_RB ,Registre_14_RB ,Registre_15_RB : std_logic_vector(31 downto 0) := (others => '0');
--- Pour le registre je ne suis pas fan de mettre un tableau de 32 bits je prefere les avoir en seul meme si ca ne change presque rien
 
 -- Initialisation des sorties
 A_BR <= (others => '0');
@@ -75,7 +76,7 @@ begin
             when "1110" => B_BR  <= Registre_14_RB;-- Registre 14
             when "1111" => B_BR  <= Registre_15_RB;-- Registre 15
 
-            when others => B_BR  <= (others => '0');   -- Dans le doute mais ne doit pas arriver
+            when others => B_BR <= (others => '0');   -- Dans le doute mais ne doit pas arriver
         end case;
 
 
@@ -107,11 +108,30 @@ begin
             A_BR <= (others => '0'); -- Re initialisation precaution
             B_BR <= (others => '0');
 
-        elsif (WE_BR = '0') then
+        elsif (Rst_BR = '0') then
             if rising_edge(clk) then
-                if (Rst_BR = '0') then
-                    
-                    C_UAL <= '1';
+                if (WE_BR = '1') then
+                    case Rw_BR is 
+                        when "0000" => Registre_0_RB <= W_BR;  -- Registre 0
+                        when "0001" => Registre_1_RB <= W_BR;  -- Registre 1
+                        when "0010" => Registre_2_RB <= W_BR;  -- Registre 2
+                        when "0011" => Registre_3_RB <= W_BR;  -- Registre 3
+                        when "0100" => Registre_4_RB <= W_BR;  -- Registre 4
+                        when "0101" => Registre_5_RB <= W_BR;  -- Registre 5
+                        when "0110" => Registre_6_RB <= W_BR;  -- Registre 6
+                        when "0111" => Registre_7_RB <= W_BR;  -- Registre 7
+                        when "1000" => Registre_8_RB <= W_BR;  -- Registre 8
+                        when "1001" => Registre_9_RB <= W_BR;  -- Registre 9
+                        when "1010" => Registre_10_RB <= W_BR; -- Registre 10
+                        when "1011" => Registre_11_RB <= W_BR; -- Registre 11
+                        when "1100" => Registre_12_RB <= W_BR; -- Registre 12
+                        when "1101" => Registre_13_RB <= W_BR; -- Registre 13
+                        when "1110" => Registre_14_RB <= W_BR; -- Registre 14
+                        when "1111" => Registre_15_RB <= W_BR; -- Registre 15
+            
+                        when others => Registre_0_RB  <= W_BR;;   -- Dans le doute mais ne doit pas arriver
+                    end case;
+    
                 end if;
             end if;
         end if;
