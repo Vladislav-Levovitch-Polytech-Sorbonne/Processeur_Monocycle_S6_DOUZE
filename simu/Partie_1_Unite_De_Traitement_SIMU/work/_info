@@ -4,13 +4,13 @@ K3
 cModel Technology
 Z0 dC:\Users\vladi\Desktop\GrF_Vladislav_BALAYAN\simu\Partie_1_Unite_De_Traitement_SIMU
 Etest_bench_ual_unite_arithmetique_et_logique_entity
-Z1 w1718546040
+Z1 w1718546965
 Z2 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
 Z3 DPx4 ieee 18 std_logic_unsigned 0 22 hEMVMlaNCR^<OOoVNV;m90
 Z4 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
 Z5 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
-Z6 8UAL_Unite_Arithmetique_et_Logique_TEST_BENCH.vhdl
-Z7 FUAL_Unite_Arithmetique_et_Logique_TEST_BENCH.vhdl
+Z6 8UAL_Unite_Arithmetique_et_Logique_TEST_BENCH_Test_Manuel.vhdl
+Z7 FUAL_Unite_Arithmetique_et_Logique_TEST_BENCH_Test_Manuel.vhdl
 l0
 L6
 VD1HIfcX35Id`;Z9C;Qk>73
@@ -28,8 +28,8 @@ R5
 Z12 DEx4 work 51 test_bench_ual_unite_arithmetique_et_logique_entity 0 22 D1HIfcX35Id`;Z9C;Qk>73
 l20
 L10
-Vk_;UVazm?NDZLYFIZTl5]2
-!s100 V4ZgcliZXWJoWF3e<8J<m3
+VPVRQV6j@e:U7Z_eK=K73g0
+!s100 ]JYPIW^;gRQ;YhXBcMo=m3
 R8
 31
 Z13 Mx4 4 ieee 14 std_logic_1164
