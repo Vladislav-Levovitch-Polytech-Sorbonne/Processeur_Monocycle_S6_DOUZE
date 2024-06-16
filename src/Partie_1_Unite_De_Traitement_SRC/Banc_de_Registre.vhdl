@@ -1,6 +1,7 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
+use std.textio.all; -- Import de la bibliothèque pour utiliser to_string -- suggere par DOUZE Yann pour les assert note
 -- use IEEE.std_logic_unsigned.ALL;
 
 entity Banc_de_Registre_entity is
@@ -31,12 +32,9 @@ signal Registre_0_RB, Registre_1_RB, Registre_2_RB ,Registre_3_RB ,Registre_4_RB
 -- Content
 begin
 
-    -- Initialisation des sorties
-    A_BR <= (others => '0');
-    B_BR <= (others => '0');
-
     process (Ra_BR,Rb_BR) -- Combinatoire lecture   -- Je ne suis pas sur qu un petit if Enable n aurait pas ete de trop
     begin
+--        report "Ra_BR = " & to_string(unsigned(Ra_BR)) & ", Rb_BR = " & to_string(unsigned(Rb_BR)) severity note; -- Pour deboguer et on a convertie Ra_BR avec l aide de ChatGPT car sans la conversion en string avec le & ca ne fonctionnait pas -- Inutile ne fonctionne toujours pas 
         case Ra_BR is 
             when "0000" => A_BR  <= Registre_0_RB;  -- Registre 0
             when "0001" => A_BR  <= Registre_1_RB;  -- Registre 1
@@ -78,8 +76,6 @@ begin
 
             when others => B_BR <= (others => '0');   -- Dans le doute mais ne doit pas arriver
         end case;
-
-
     end process;
 
     process (Clk_BR,Rst_BR) -- Synchrone Ecriture 
@@ -102,9 +98,6 @@ begin
             Registre_13_RB <= (others => '0');
             Registre_14_RB <= (others => '0');
             Registre_15_RB <= (others => '0');
-   
-            A_BR <= (others => '0'); -- Re initialisation precaution
-            B_BR <= (others => '0');
 
         elsif (Rst_BR = '0') then
             if rising_edge(Clk_BR) then
@@ -126,10 +119,10 @@ begin
                         when "1101" => Registre_13_RB <= W_BR; -- Registre 13
                         when "1110" => Registre_14_RB <= W_BR; -- Registre 14
                         when "1111" => Registre_15_RB <= W_BR; -- Registre 15
-            
-                        when others => Registre_0_RB  <= W_BR;   -- Dans le doute mais ne doit pas arriver
+
+                        when others => Registre_0_RB <= W_BR;  -- Par default
                     end case;
-                    
+
                 end if;
             end if;
         end if;

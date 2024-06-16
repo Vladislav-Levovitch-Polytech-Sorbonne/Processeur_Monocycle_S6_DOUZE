@@ -13,5 +13,6 @@ vsim test_bench_Banc_de_Registre_entity
 view signals
 add wave *
 
-run -all
+#run -all Tres dangeure avec le While 1 de l'Horloge Attention
+run 1 us
 wave zoom full

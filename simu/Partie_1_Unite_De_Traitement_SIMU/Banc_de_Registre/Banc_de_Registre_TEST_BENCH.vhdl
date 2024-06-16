@@ -50,14 +50,31 @@ Test_bench_Banc_de_Registre : process
 		-- TEST Ecriture 
 
 		wait for 1 ns; -- Protection d entree en non assignation
-		--Test Add somme sans drapeau
 		SIGNAL_Test_Bench_WE_BR <= '1';
-		--SIGNAL_Test_Bench_B_UAL <= x"0000_010A";
-		wait for 1 ns; -- Protection des asserts
+		SIGNAL_Test_Bench_W_BR <= x"4444_4444";
+		SIGNAL_Test_Bench_Rw_BR <= "1111";
 
-        --assert (SIGNAL_Test_Bench_S_UAL = x"0000_013A") report "Test ADD normal : Erreur resutat" severity error;
-		--assert (SIGNAL_Test_Bench_Z_UAL = '0') report "Test ADD normal : Z_UAL incorrect" severity error;
+		wait for 12 ns; -- Protection des asserts attente periode horloe
+        assert (SIGNAL_Test_Bench_A_BR = x"0000_0000") report "Test Ecriture sans registre de sortie : Erreur resutat" severity error;
 		wait for 3 ns;
+
+		SIGNAL_Test_Bench_WE_BR <= '1';
+		SIGNAL_Test_Bench_W_BR <= x"AAAA_1111";
+		SIGNAL_Test_Bench_Rw_BR <= "0001";
+		SIGNAL_Test_Bench_Rb_BR <= "1111";
+		wait for 12 ns; -- Protection des asserts attente periode horloge
+        assert (SIGNAL_Test_Bench_B_BR = x"4444_4444") report "Test Ecriture avec registre de sortie B : Erreur resutat" severity error;
+		
+		SIGNAL_Test_Bench_WE_BR <= '1';
+		SIGNAL_Test_Bench_W_BR <= x"0000_1001";
+		SIGNAL_Test_Bench_Rw_BR <= "0010";
+		SIGNAL_Test_Bench_Ra_BR <= "1111";
+		SIGNAL_Test_Bench_Rb_BR <= "0001";
+		wait for 12 ns; -- Protection des asserts attente periode horloge
+        assert (SIGNAL_Test_Bench_A_BR = x"4444_4444") report "Test Ecriture avec registre simultane de sortie A : Erreur resutat" severity error;
+		assert (SIGNAL_Test_Bench_B_BR = x"AAAA_1111") report "Test Ecriture avec registre simultane de sortie B : Erreur resutat" severity error;
+		
+		wait for 12 ns;
 
 		-- TEST Lecture 
 	
