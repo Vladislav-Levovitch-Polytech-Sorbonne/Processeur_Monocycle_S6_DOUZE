@@ -3,11 +3,11 @@ use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 use IEEE.std_logic_unsigned.ALL;
 
-entity test_bench_UAL_Unite_Arithmetique_et_Logique_entity is
+entity test_bench_Banc_de_Registre_entity is
     
-end test_bench_UAL_Unite_Arithmetique_et_Logique_entity;
+end test_bench_Banc_de_Registre_entity;
 
-architecture test_bench_UAL_architecture of test_bench_UAL_Unite_Arithmetique_et_Logique_entity is
+architecture test_bench_Banc_de_Registre_architecture of test_bench_Banc_de_Registre_entity is
 	
 	-- Entrees
 	signal SIGNAL_Test_Bench_OP_UAL  : std_logic_vector(2 downto 0) := "000"; -- Signal de commande sur 3 bits
@@ -18,7 +18,7 @@ architecture test_bench_UAL_architecture of test_bench_UAL_Unite_Arithmetique_et
     signal SIGNAL_Test_Bench_N_UAL,SIGNAL_Test_Bench_Z_UAL, SIGNAL_Test_Bench_C_UAL,SIGNAL_Test_Bench_V_UAL : std_logic :='0'; -- Drapeaux
 
 begin 
-	uut_UAL : entity work.UAL_Unite_Arithmetique_et_Logique_entity
+	uut_UAL : entity work.Banc_de_Registre_entity
         port map 
 		(
             OP_UAL=> SIGNAL_Test_Bench_OP_UAL,
@@ -31,7 +31,7 @@ begin
             V_UAL => SIGNAL_Test_Bench_V_UAL
         );
 
-Test_bench_UAL : process 
+Test_bench_Banc_de_Registre : process 
 	
     begin		
 
@@ -151,5 +151,5 @@ Test_bench_UAL : process
 --		wait for 10 ns;
 
 		wait;
-    end process Test_bench_UAL;   
-end test_bench_UAL_architecture;
+    end process Test_bench_Banc_de_Registre;   
+end test_bench_Banc_de_Registre_architecture;
