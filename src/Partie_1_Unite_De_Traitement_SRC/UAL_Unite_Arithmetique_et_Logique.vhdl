@@ -8,12 +8,15 @@ entity UAL_Unite_Arithmetique_et_Logique_entity is
     (
         OP_UAL  : in std_logic_vector(2 downto 0); -- Signal de COMMANDE 3 bits
         A_UAL,B_UAL : in std_logic_vector(31 downto 0);
+
         S_UAL : out std_logic_vector(31 downto 0);
         N_UAL,Z_UAL,C_UAL,V_UAL : out std_logic -- Drapeaux
+
     );
 end UAL_Unite_Arithmetique_et_Logique_entity;
 
 architecture UAL_architecture of UAL_Unite_Arithmetique_et_Logique_entity is
+
 -- Signal
 signal S_SIGNAL_UAL : std_logic_vector(31 downto 0) := (others => '0');
 
