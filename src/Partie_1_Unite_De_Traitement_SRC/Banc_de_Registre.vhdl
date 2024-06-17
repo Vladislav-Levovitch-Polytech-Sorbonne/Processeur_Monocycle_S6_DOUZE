@@ -28,6 +28,11 @@ signal B_SIGNAL_RB : std_logic_vector(31 downto 0) := (others => '0');
 -- Pour le registre je ne suis pas fan de mettre un tableau de 32 bits je prefere les avoir en seul meme si ca ne change presque rien
 
 signal Registre_0_RB, Registre_1_RB, Registre_2_RB ,Registre_3_RB ,Registre_4_RB ,Registre_5_RB ,Registre_6_RB ,Registre_7_RB ,Registre_8_RB ,Registre_9_RB ,Registre_10_RB ,Registre_11_RB ,Registre_12_RB ,Registre_13_RB ,Registre_14_RB ,Registre_15_RB : std_logic_vector(31 downto 0) := (others => '0');
+-- La version avec le banc consisterai a 
+-- remplacer les lignes when "0000" => A_BR  <= Registre_0_RB;  -- Registre 0 par 
+-- when "0000" => A_BR  <= Banc (0);  -- Registre 0 et ainsi de suite et la ligne pour l ecriture : 
+-- when "0000" => Registre_0_RB <= W_BR;  -- Registre 0
+-- when "0000" => Banc(0) <= W_BR;  
 
 -- Content
 begin
