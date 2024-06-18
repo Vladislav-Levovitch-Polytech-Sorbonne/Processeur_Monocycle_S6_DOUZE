@@ -18,22 +18,20 @@ end Mux_2_to_1_N_Bits_entity;
 architecture mux_architecture of Mux_2_to_1_N_Bits_entity is
 
 -- Signal
-signal S_SIGNAL_mux : std_logic_vector(31 downto 0) := (others => '0');
+signal S_SIGNAL_mux : std_logic_vector(Mux_N-1 downto 0) := (others => '0');
 
 -- Content
 begin
-    -- Initialisation par defaut des sorties
-    Mux_S <= (others => '0');
-
+    
+    Mux_S <= S_SIGNAL_mux;
 process (Mux_A,Mux_B,Mux_COM) -- Combinatoire toute entree dans la liste de sensibilite
 begin   
-    if (Mux_COM = '1') 
+    if (Mux_COM = '0') then
         S_SIGNAL_mux <= Mux_A;
 
-    elsif (Mux_COM = '0') 
+    elsif (Mux_COM = '1') then
         S_SIGNAL_mux <= Mux_B;
 
     end if;
-    Mux_S <= S_SIGNAL_mux;
 end process;
 end mux_architecture;

@@ -25,13 +25,12 @@ begin
     -- Initialisation
 process (E_Ext) -- Combinatoire simple
 begin
+    S_Ext <= S_SIGNAL_Ext & E_Ext;
     if (E_Ext(N_Ext-1) = '1') then
-        S_SIGNAL_Ext ((N_Ext-1) downto 0)<= (others => '1');
-        S_Ext <= E_Ext;
+        S_Ext(32-1 downto N_Ext-1) <= (others => '1');
 
     elsif (E_Ext(N_Ext-1) = '0') then
-        S_SIGNAL_Ext ((N_Ext-1) downto 0)<= (others => '0');
-        S_Ext <= S_SIGNAL_Ext & E_Ext;
+        S_SIGNAL_Ext <= (others => '0');
     end if;
 end process;
 end architecture Extension_de_Signe_entity_architecture;
