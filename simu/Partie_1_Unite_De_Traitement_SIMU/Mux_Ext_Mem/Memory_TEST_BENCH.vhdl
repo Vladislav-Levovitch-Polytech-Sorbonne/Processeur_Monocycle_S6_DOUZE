@@ -30,7 +30,7 @@ UUT_Memoire_de_donnees : entity work.Memoire_de_donnees_entity
         Clk_Memory => SIGNAL_Test_Bench_Clk_Memory,
         Rst_Memory => SIGNAL_Test_Bench_Rst_Memory,
         WE_Memory  => SIGNAL_Test_Bench_WE_Memory,
-        COM_Memrory => SIGNAL_Test_Bench_COM_Memory,
+        COM_Memory => SIGNAL_Test_Bench_COM_Memory,
         Addr_Memory => SIGNAL_Test_Bench_Addr_Memory,
         DataIn_A_Memory => SIGNAL_Test_Bench_DataIn_A_Memory,
         DataIn_B_Memory => SIGNAL_Test_Bench_DataIn_B_Memory,
@@ -40,7 +40,7 @@ UUT_Memoire_de_donnees : entity work.Memoire_de_donnees_entity
 Test_bench_Memory : process
     begin
         wait for 1 ns;
-        SIGNAL_Test_Bench_Rst_Memory <= '1';
+        --SIGNAL_Test_Bench_Rst_Memory <= '1';
         wait for 1 ns;
         SIGNAL_Test_Bench_Rst_Memory <= '0';
         wait for 1 ns;
