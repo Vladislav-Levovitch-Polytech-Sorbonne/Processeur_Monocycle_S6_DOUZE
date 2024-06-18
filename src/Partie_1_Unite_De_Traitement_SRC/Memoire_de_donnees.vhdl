@@ -21,13 +21,11 @@ architecture Memoire_architecture of Memoire_de_donnees_entity is
 
 -- Signal
 signal DataIn_SIGNAL_Memory : std_logic_vector(31 downto 0) := (others => '0');
-signal Memory : array(63 downto 0) of std_logic_vector(31 downto 0) := (others => (others => '0')); -- La memoire etant plus opaque que le Banc de Registre ici je trouve plus adaptee d utiliser le tableau (et je n etait pas fan cette fois d initialiser les 32 mots :)
+signal Memory : array (63 downto 0) of std_logic_vector(31 downto 0) := (others => (others => '0')); -- La memoire etant plus opaque que le Banc de Registre ici je trouve plus adaptee d utiliser le tableau (et je n etait pas fan cette fois d initialiser les 32 mots :)
 -- Le tableau a le desavantage d etre plus opaque comme strucuture de donnee mais c est plus coherent avec le module ( memoire )
 
 -- Content
 begin
-    
-    S_UAL <= S_SIGNAL_UAL;
 
 Memory_Local_Mux_Process : process (COM_Memrory, DataIn_A_Memory, DataIn_B_Memory) -- Combinatoire assignation
     begin 
