@@ -14,7 +14,7 @@ architecture test_bench_Memory_architecture of test_bench_Memory_entity is
     signal SIGNAL_Test_Bench_DataIn_A_Memory, SIGNAL_Test_Bench_DataIn_B_Memory : std_logic_vector(31 downto 0) := (others => '0');
 
 	-- Sorties
-    signal SIGNAL_Test_Bench_DataOut_Memory : std_logic_vector(31 downto 0) := (others => '0');
+    signal SIGNAL_Test_Bench_DataOut_Memory : std_logic_vector(31 downto 0);
 
 -- Content
 begin
@@ -49,15 +49,13 @@ Test_bench_Memory : process
         SIGNAL_Test_Bench_DataIn_A_Memory <= x"00402010";
         SIGNAL_Test_Bench_Addr_Memory <= "001010"; -- Addresse 10
         wait for 1 ns;
-        SIGNAL_Test_Bench_WE_Memory <= '0';
-        wait for 1 ns;
     
         -- 
-        SIGNAL_Test_Bench_Addr_Memory <= "001010"; -- Addresse 10
+        SIGNAL_Test_Bench_Addr_Memory <= "001011"; -- Addresse 11
         SIGNAL_Test_Bench_COM_Memory <= '0'; -- Entree A
         wait for 1 ns;
         
-        assert SIGNAL_Test_Bench_DataOut_Memory = x"00402010" report "Test 1 faile" severity failure;
+        assert SIGNAL_Test_Bench_DataOut_Memory = x"00402010" report "Test 1 faile" severity error;
         wait for 1 ns;
     
         SIGNAL_Test_Bench_WE_Memory <= '1';
@@ -66,12 +64,12 @@ Test_bench_Memory : process
         SIGNAL_Test_Bench_WE_Memory <= '0';
         wait for 1 ns;
     
-        SIGNAL_Test_Bench_Addr_Memory <= "001010"; -- Addresse 10
+        SIGNAL_Test_Bench_Addr_Memory <= "001110";
         SIGNAL_Test_Bench_COM_Memory <= '1';
         wait for 1 ns;
         
-        assert SIGNAL_Test_Bench_DataOut_Memory = x"00804020" report "Test 2 faile" severity failure;
+        assert SIGNAL_Test_Bench_DataOut_Memory = x"00804020" report "Test 2 faile" severity error;
+        wait for 22 ns;
         wait;
-    
     end process Test_bench_Memory;
 end test_bench_Memory_architecture;

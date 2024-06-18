@@ -14,5 +14,5 @@ view signals
 add wave *
 
 #run -all Tres dangeure avec le While 1 de l'Horloge Attention
-run 2 us
+run 33 ns
 wave zoom full
