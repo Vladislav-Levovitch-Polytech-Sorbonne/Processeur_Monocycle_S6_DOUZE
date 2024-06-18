@@ -40,16 +40,20 @@ UUT_Memoire_de_donnees : entity work.Memoire_de_donnees_entity
 Test_bench_Memory : process
     begin
         wait for 1 ns;
+        SIGNAL_Test_Bench_Rst_Memory <= '1';
+        wait for 1 ns;
+        SIGNAL_Test_Bench_Rst_Memory <= '0';
+        wait for 1 ns;
         SIGNAL_Test_Bench_DataIn_B_Memory <= x"02402010";
         SIGNAL_Test_Bench_WE_Memory <= '1';
         SIGNAL_Test_Bench_DataIn_A_Memory <= x"00402010";
-        SIGNAL_Test_Bench_Addr_Memory <= "1010"; -- Addresse 10
+        SIGNAL_Test_Bench_Addr_Memory <= "001010"; -- Addresse 10
         wait for 1 ns;
         SIGNAL_Test_Bench_WE_Memory <= '0';
         wait for 1 ns;
     
         -- 
-        SIGNAL_Test_Bench_Addr_Memory <= "1010"; -- Addresse 10
+        SIGNAL_Test_Bench_Addr_Memory <= "001010"; -- Addresse 10
         SIGNAL_Test_Bench_COM_Memory <= '0'; -- Entree A
         wait for 1 ns;
         
@@ -62,7 +66,7 @@ Test_bench_Memory : process
         SIGNAL_Test_Bench_WE_Memory <= '0';
         wait for 1 ns;
     
-        SIGNAL_Test_Bench_Addr_Memory <= "1010"; -- Addresse 10
+        SIGNAL_Test_Bench_Addr_Memory <= "001010"; -- Addresse 10
         SIGNAL_Test_Bench_COM_Memory <= '1';
         wait for 1 ns;
         
