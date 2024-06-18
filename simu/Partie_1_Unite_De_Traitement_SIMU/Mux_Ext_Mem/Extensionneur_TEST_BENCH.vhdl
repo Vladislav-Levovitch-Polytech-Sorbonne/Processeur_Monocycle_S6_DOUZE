@@ -33,16 +33,19 @@ Test_bench_Extension_de_Signe : process
         
         -- Verification signal Simple positif
         SIGNAL_Test_Bench_E_Ext <= x"0011";
+        wait for 1 ns;
         assert SIGNAL_Test_Bench_S_Ext = x"0000_0011" report "Test + incorrect" severity error;
         wait for 4 ns;
 
         -- Verification signal Simple nul
         SIGNAL_Test_Bench_E_Ext <= x"0000";
+        wait for 1 ns;
         assert SIGNAL_Test_Bench_S_Ext = x"0000_0000" report "Test 0 incorrect" severity error;
         wait for 4 ns;
 
         -- Verification signal Simple negatif
         SIGNAL_Test_Bench_E_Ext <= x"FF21";
+        wait for 1 ns;
         assert SIGNAL_Test_Bench_S_Ext = x"FFFF_FFFF21" report "Test - incorrect" severity error;
         wait for 4 ns;
 
