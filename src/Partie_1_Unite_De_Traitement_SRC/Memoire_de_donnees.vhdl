@@ -25,27 +25,29 @@ architecture Memoire_architecture of Memoire_de_donnees_entity is
 
 -- Content
 begin
-Memory_Reading_Process : process (Addr_Memory)
-    begin
+--Memory_Reading_Process : process (Addr_Memory)
+--    begin
     DataOut_Memory <= Memory(to_integer(unsigned(Addr_Memory)));
-    end process Memory_Reading_Process;
+--    end process Memory_Reading_Process;
 
-Memory_Writing_Process : process (Clk_Memory) -- Synchronisé avec Clk_Memory
+Memory_Writing_Process : process (Clk_Memory,Rst_Memory) -- Reset asynchrone
     begin
-        if rising_edge(Clk_Memory) then
-            if Rst_Memory = '1' then
-                -- Redemarrage de la memoire
-                for i in 64-1 downto 0 loop
-                    Memory(i) <= (others => '0');
-                end loop;
-            elsif WE_Memory = '1' then
-                -- Local Mux
-                case COM_Memory is
-                    when '0' => Memory(to_integer(unsigned(Addr_Memory))) <= DataIn_A_Memory;
-                    when '1' => Memory(to_integer(unsigned(Addr_Memory))) <= DataIn_B_Memory;
-                    when others => null; -- Par securite meme si ne devrait pas arriver 
-                end case;
+        if Rst_Memory = '0' then
+            if rising_edge(Clk_Memory) then
+                if WE_Memory = '1' then -- Sucre syntaxique pour la lisibilite
+                    -- Local Mux
+                    case COM_Memory is
+                        when '0' => Memory(to_integer(unsigned(Addr_Memory))) <= DataIn_A_Memory;
+                        when '1' => Memory(to_integer(unsigned(Addr_Memory))) <= DataIn_B_Memory;
+                        when others => null; -- Par securite meme si ne devrait pas arriver 
+                    end case;
+                end if;
             end if;
+        elsif Rst_Memory = '1' then
+            -- Redemarrage de la memoire
+            for i in 64-1 downto 0 loop
+                Memory(i) <= (others => '0');
+            end loop;
         end if;
     end process Memory_Writing_Process;
 end Memoire_architecture;

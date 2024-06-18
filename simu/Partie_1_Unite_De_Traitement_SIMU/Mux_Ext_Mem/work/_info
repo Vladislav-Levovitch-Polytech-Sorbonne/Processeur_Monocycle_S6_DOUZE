@@ -36,7 +36,7 @@ R9
 R10
 !s100 LA1<z2J27BD=GkUOUmCd32
 Ememoire_de_donnees_entity
-Z14 w1718709478
+Z14 w1718717501
 R3
 R4
 Z15 dC:\Users\vladi\Desktop\GrF_Vladislav_BALAYAN\simu\Partie_1_Unite_De_Traitement_SIMU\Mux_Ext_Mem
@@ -56,14 +56,14 @@ R4
 Z18 DEx4 work 25 memoire_de_donnees_entity 0 22 QeQKmZb1<mXCOPXom08R93
 l27
 L20
-VR6f:US4F12oJz@1cnOO;51
+VR:h6O9:BS>XW4T5UnCZJ;0
 R8
 31
 Z19 Mx2 4 ieee 14 std_logic_1164
 Z20 Mx1 4 ieee 11 numeric_std
 R9
 R10
-!s100 9mKId1ANINHOSNUhZjC=g3
+!s100 CmZF3nTOcJGE;C[]K53kf0
 Etest_bench_banc_de_registre_entity
 Z21 w1718574377
 Z22 DPx4 ieee 15 std_logic_arith 0 22 GJbAT?7@hRQU9IQ702DT]2
@@ -103,7 +103,7 @@ R9
 R10
 !s100 c:ZZOD[f6ZPe;7DZnlW7k3
 Etest_bench_memory_entity
-Z27 w1718708693
+Z27 w1718716899
 R3
 R4
 R15
@@ -125,8 +125,8 @@ R4
 Z30 DEx4 work 24 test_bench_memory_entity 0 22 UXd<7;nmbV?;c1YXAD2^B3
 l20
 L8
-Z31 VWQC=nTnbdSmS^_P<L]0a[2
-Z32 !s100 W8ZZFA>`1J0KmAUH_zPIC3
+Z31 VT0MTS6eI^Q;5QFB<QjQVe1
+Z32 !s100 Agc:KAHIQ`i[NXD:k@6ao2
 R8
 31
 R19
