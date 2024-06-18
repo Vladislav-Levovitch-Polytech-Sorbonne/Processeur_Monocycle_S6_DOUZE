@@ -8,9 +8,10 @@ entity Memoire_de_donnees_entity is
         Clk_Memory : in std_logic;
         Rst_Memory : in std_logic;
         WE_Memory  : in std_logic;
+        COM_Memrory: in std_logic; -- Signal de COMMANDE 1 bit
 
         Addr_Memory :  in std_logic_vector(5 downto 0);
-        DataIn_Memory: in std_logic_vector(31 downto 0);
+        DataIn_A_Memory, DataIn_B_Memory: in std_logic_vector(31 downto 0);
 
         DataOut_Memory : out std_logic_vector(31 downto 0)
     );
@@ -19,11 +20,20 @@ end Memoire_de_donnees_entity;
 architecture Memoire_architecture of Memoire_de_donnees_entity is
 
 -- Signal
-signal S_SIGNAL_Memory : std_logic_vector(31 downto 0) := (others => '0');
+signal DataIn_SIGNAL_Memory : std_logic_vector(31 downto 0) := (others => '0');
 
 -- Content
 begin
+    
     S_UAL <= S_SIGNAL_UAL;
+
+    process (COM_Memrory) -- Combinatoire lecture   -- Je ne suis pas sur qu un petit if Enable n aurait pas ete de trop
+        case COM_Memrory is 
+            when '0' => DataIn_SIGNAL_Memory  <= DataIn_A_Memory;  -- Entree A
+            when '1' => DataIn_SIGNAL_Memory  <= DataIn_B_Memory;  -- Entree B
+            when others => DataIn_SIGNAL_Memory  <= (others => '0');   -- Dans le doute mais ne doit pas arriver
+        end case;
+    begin
 
 Memory_Process : process (A_UAL,B_UAL,OP_UAL,S_SIGNAL_UAL) -- Combinatoire toute sortie dans la liste de sensibilite
     
