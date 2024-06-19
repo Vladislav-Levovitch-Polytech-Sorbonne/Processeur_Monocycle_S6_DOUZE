@@ -2,32 +2,23 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
-entity Bascule_D_Simple_PC_entity is 
-    
-    port 
-    (
-        Bascule_D_Clk : in std_logic;
-        Bascule_D_In : in std_logic_vector( 31 downto 0 );
-        Bascule_D_Rst : in std_logic; -- Bit de RESET
-
-        Bascule_D_Out : out std_logic_vector( 31 downto 0)
+entity Mux_2_to_1_N_Bits_entity is
+    generic ( Mux_N : integer := 32 );
+    port (
+        Mux_A, Mux_B : in std_logic_vector( Mux_N-1 downto 0 );
+        Mux_COM : in std_logic;
+        Mux_S : out std_logic_vector( Mux_N-1 downto 0)
     );
-end Bascule_D_Simple_PC_entity;
+end Mux_2_to_1_N_Bits_entity;
 
-architecture Bascule_D_Simple_PC_architecture of Bascule_D_Simple_PC_entity is
-
--- Content
+architecture mux_architecture of Mux_2_to_1_N_Bits_entity is
 begin
-    
-process (Bascule_D_Clk,Bascule_D_Rst) -- Synchrone sinon ca perd son sens
-begin   
-    if (Bascule_D_Rst = '1') then
-        Bascule_D_Out <= x"0000_0000";
-
-    elsif (Bascule_D_Rst = '0') then
-        if (rising_edge (Bascule_D_Clk)) then
-            Bascule_D_Out <= Bascule_D_In;
-        end if; 
-    end if;
-end process;
-end Bascule_D_Simple_PC_architecture;
+    process (Mux_A, Mux_B, Mux_COM)
+    begin
+        if (Mux_COM = '0') then
+            Mux_S <= Mux_A;
+        else
+            Mux_S <= Mux_B;
+        end if;
+    end process;
+end mux_architecture;

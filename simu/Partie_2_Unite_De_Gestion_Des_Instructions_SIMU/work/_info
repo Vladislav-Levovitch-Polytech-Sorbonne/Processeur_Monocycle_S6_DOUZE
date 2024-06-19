@@ -4,7 +4,7 @@ K3
 cModel Technology
 Z0 dC:\Users\vladi\Desktop\GrF_Vladislav_BALAYAN\simu\Partie_2_Unite_De_Gestion_Des_Instructions_SIMU
 Eadditionneur_2_entrees_entity
-Z1 w1718817243
+Z1 w1718822940
 Z2 DPx4 ieee 11 numeric_std 0 22 =NSdli^?T5OD8;4F<blj<3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 GH1=`jDDBJ=`LM;:Ak`kf2
 Z4 8../../src/Partie_2_Unite_De_Gestion_Des_Instructions_SRC/Additionneur_2_Entrees.vhdl
@@ -21,16 +21,16 @@ Aadditionneur_2_entrees_architecture
 R2
 R3
 Z9 DEx4 work 29 additionneur_2_entrees_entity 0 22 f:jaN=5cOYA^R[<3XNJP32
-l20
+l18
 L14
-VC4d_Olb94B5>FllRCz4zm3
+VMfdiYBd?OalV0z2Oi<k`50
 R6
 31
 Z10 Mx2 4 ieee 14 std_logic_1164
 Z11 Mx1 4 ieee 11 numeric_std
 R7
 R8
-!s100 MzbZneU1ZT9AG;J<TgIom1
+!s100 4`k;P71]A@aL7Z^gi9D0W1
 Ebascule_d_simple_pc_entity
 Z12 w1718813393
 R2
@@ -116,7 +116,7 @@ R7
 R8
 !s100 @BHWOheGTgWmD@PRRmzBW0
 Emux_2_to_1_n_bits_entity
-Z24 w1718788287
+Z24 w1718822803
 R2
 R3
 Z25 8../../src/Partie_2_Unite_De_Gestion_Des_Instructions_SRC/Mux_2_to_1_N_Bits.vhdl
@@ -144,7 +144,7 @@ R7
 R8
 !s100 Bl1l;DZ8=ZAH1gKAcO8fb3
 Etest_bench_unite_de_gestion_des_instructions_entity
-Z28 w1718821967
+Z28 w1718823146
 R2
 R3
 Z29 8Unite_de_Gestion_Des_Instructions_TEST_BENCH.vhdl
@@ -165,20 +165,49 @@ R3
 Z33 DEx4 work 51 test_bench_unite_de_gestion_des_instructions_entity 0 22 H14PdU0ANdhFS3@z]lI]z1
 l19
 L8
-Ve7GGh@OmJbP]EYe66@H;43
-!s100 HQn5?jE[`P?A143_D4HhZ3
+Z34 VYF9L[aoLT=I<Q7U?<_if02
+Z35 !s100 CD9H4UcBSUSA2^^6UQ1C62
 R6
 31
 R10
 R11
 R7
 R8
-Etic_tac_entity
-Z34 w1718563762
+Etest_unite_de_gestion_des_instructions
+Z36 w1718822773
 R2
 R3
-Z35 8../../src/Horloge.vhdl
-Z36 F../../src/Horloge.vhdl
+R29
+R30
+l0
+L5
+VUR5Goc:b=aS>F<`g?h@j_0
+R6
+31
+R7
+R8
+!s100 MPG;Wn7DzoAAP``Ye_F?b2
+Atest_unite_de_gestion_des_instructions_arch
+R32
+R2
+R3
+DEx4 work 38 test_unite_de_gestion_des_instructions 0 22 UR5Goc:b=aS>F<`g?h@j_0
+l18
+L8
+Vh>QKg1o2@fHE5Ro3b]>b>1
+R6
+31
+R10
+R11
+R7
+R8
+!s100 4TNA[D8<U_X43AVzDPeNb2
+Etic_tac_entity
+Z37 w1718563762
+R2
+R3
+Z38 8../../src/Horloge.vhdl
+Z39 F../../src/Horloge.vhdl
 l0
 L6
 V47S5:D8RhZILaeY;e_O5b1
@@ -202,11 +231,11 @@ R7
 R8
 !s100 JeN0Vg9azYT<]CAWI7Lf03
 Eunite_de_gestion_des_instructions_entity
-Z37 w1718821306
+Z40 w1718821306
 R2
 R3
-Z38 8../../src/Partie_2_Unite_De_Gestion_Des_Instructions_SRC/Unite_de_Gestion_Des_Instructions.vhdl
-Z39 F../../src/Partie_2_Unite_De_Gestion_Des_Instructions_SRC/Unite_de_Gestion_Des_Instructions.vhdl
+Z41 8../../src/Partie_2_Unite_De_Gestion_Des_Instructions_SRC/Unite_de_Gestion_Des_Instructions.vhdl
+Z42 F../../src/Partie_2_Unite_De_Gestion_Des_Instructions_SRC/Unite_de_Gestion_Des_Instructions.vhdl
 l0
 L5
 V62D=2oU0hCzfA2Q:60G2H1

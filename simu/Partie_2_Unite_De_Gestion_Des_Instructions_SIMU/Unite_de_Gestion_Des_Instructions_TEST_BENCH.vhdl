@@ -45,10 +45,16 @@ Test_bench_Unite_de_Gestion_Des_Instructions : process
 
         SIGNAL_nPCsel_UGI <= '1';
         wait for 2 ns;
-        SIGNAL_Offset_UGI <= x"00_2003";
-
-        wait for 21 ns;
+        SIGNAL_Offset_UGI <= x"00_0003";
+        wait for 10 ns;
+        SIGNAL_Offset_UGI <= x"00_0012";
+        SIGNAL_Rst_R_UGI <= '1';    
+        wait for 1 ns;
         SIGNAL_Rst_R_UGI <= '0';
+        wait for 1 ns;
+        SIGNAL_nPCsel_UGI <= '0';
+        wait for 2 ns;
+
 
         wait;
     end process;
