@@ -5,12 +5,13 @@ use ieee.numeric_std.all;
 entity Unite_de_Traitement_entity is
     port 
     (
-        Clk_UT, Rst_UT, WE_UT, WrEN_UT : in std_logic;
+        Clk_UT, Rst_R_UT, Rst_M_UT, WE_UT, WrEN_UT : in std_logic;
 
         Ra_UT, Rb_UT, Rw_UT : in std_logic_vector(3 downto 0);
 
         OP_UAL_UT  : in std_logic_vector(2 downto 0); -- Signal de COMMANDE 3 bits
         OP_1_Mux, OP_2_Mux : in std_logic; -- Signal de COMMANDE 1 bits
+        Imm_UT  : in std_logic_vector(15 downto 0);
 
         S_UT : out std_logic_vector(31 downto 0); -- Variable copie en sortie
         N_UT, Z_UT, C_UT, V_UT : out std_logic -- Drapeaux
