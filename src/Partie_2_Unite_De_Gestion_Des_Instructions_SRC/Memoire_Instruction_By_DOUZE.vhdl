@@ -41,5 +41,5 @@ end init_mem;
 
 -- Content
 begin
-Out_Instruction <= mem(to_integer(unsigned (In_PC)));
+Out_Instruction <= mem(to_integer(unsigned (In_PC))); -- Combinatoire et sans horloge ( pas synchrone )
 end architecture;

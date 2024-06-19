@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
-entity Bascule_D_Simple_PC_entity is
+entity Bascule_D_Simple_PC_entity is 
     
     port 
     (
@@ -21,12 +21,13 @@ begin
     
 process (Bascule_D_Clk,Bascule_D_Rst) -- Synchrone sinon ca perd son sens
 begin   
-    if (Bascule_D_Rst = '0') then
-        S_SIGNAL_mux <= Bascule_D_A;
+    if (Bascule_D_Rst = '1') then
+        Bascule_D_Out <= x"0000_0000";
 
-    elsif (Bascule_D_Rst = '1') then
-        S_SIGNAL_mux <= Bascule_D_B;
-
+    elsif (Bascule_D_Rst = '0') then
+        if (rising_edge (Bascule_D_Clk)) then
+            Bascule_D_Out <= Bascule_D_In;
+        end if; 
     end if;
 end process;
 end Bascule_D_Simple_PC_architecture;
