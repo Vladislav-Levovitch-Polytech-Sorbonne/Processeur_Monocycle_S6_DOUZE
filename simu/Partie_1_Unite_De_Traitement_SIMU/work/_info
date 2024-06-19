@@ -88,7 +88,7 @@ R7
 R8
 !s100 Bl1l;DZ8=ZAH1gKAcO8fb3
 Etest_bench_unite_de_traitement_entity
-Z20 w1718796525
+Z20 w1718801200
 R2
 R3
 Z21 8Unite_de_Traitement_TEST_BENCH.vhdl
@@ -109,8 +109,8 @@ R3
 Z25 DEx4 work 37 test_bench_unite_de_traitement_entity 0 22 <]H?=mC`RViShgY4HT4]81
 l24
 L9
-V9nEQ39Mzik3c>ljUIcm<l0
-!s100 ?aNI[CkHGcF^o7f:Hl_>P2
+Z26 V_MX>JkJk@R;SFdbA3G^=H2
+Z27 !s100 V_dh`aRjVk^<lANPzGTV70
 R6
 31
 R10
@@ -118,11 +118,11 @@ R11
 R7
 R8
 Etic_tac_entity
-Z26 w1718563762
+Z28 w1718563762
 R2
 R3
-Z27 8../../src/Horloge.vhdl
-Z28 F../../src/Horloge.vhdl
+Z29 8../../src/Horloge.vhdl
+Z30 F../../src/Horloge.vhdl
 l0
 L6
 V47S5:D8RhZILaeY;e_O5b1
@@ -146,11 +146,11 @@ R7
 R8
 !s100 JeN0Vg9azYT<]CAWI7Lf03
 Eual_banc_de_registre_entity
-Z29 w1718624800
+Z31 w1718624800
 R2
 R3
-Z30 8../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Banc_de_Registre.vhdl
-Z31 F../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Banc_de_Registre.vhdl
+Z32 8../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Banc_de_Registre.vhdl
+Z33 F../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Banc_de_Registre.vhdl
 l0
 L5
 V=3gk:zQX_]e?_7ONK2I8N2
@@ -160,8 +160,8 @@ R7
 R8
 !s100 7DSj=c5m47;ghkDgOU7]M3
 Aual_banc_de_registre_architecture
-Z32 DEx4 work 40 ual_unite_arithmetique_et_logique_entity 0 22 J3oElH[=YYIFbYg>RP8U;0
-Z33 DEx4 work 42 valeur_initialisee_banc_de_registre_entity 0 22 6P>ZVEk^:8k9P]iVFTUEC1
+Z34 DEx4 work 40 ual_unite_arithmetique_et_logique_entity 0 22 J3oElH[=YYIFbYg>RP8U;0
+Z35 DEx4 work 42 valeur_initialisee_banc_de_registre_entity 0 22 6P>ZVEk^:8k9P]iVFTUEC1
 R2
 R3
 DEx4 work 27 ual_banc_de_registre_entity 0 22 =3gk:zQX_]e?_7ONK2I8N2
@@ -176,11 +176,11 @@ R7
 R8
 !s100 DC4kJO7ZQT]aHNmY>2B:P1
 Eual_unite_arithmetique_et_logique_entity
-Z34 w1718620824
+Z36 w1718620824
 R2
 R3
-Z35 8../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Unite_Arithmetique_et_Logique.vhdl
-Z36 F../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Unite_Arithmetique_et_Logique.vhdl
+Z37 8../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Unite_Arithmetique_et_Logique.vhdl
+Z38 F../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Unite_Arithmetique_et_Logique.vhdl
 l0
 L6
 VJ3oElH[=YYIFbYg>RP8U;0
@@ -192,7 +192,7 @@ R8
 Aual_architecture
 R2
 R3
-R32
+R34
 l24
 L18
 VnPb`1<T59nd:3RKG2eS>@1
@@ -204,11 +204,11 @@ R7
 R8
 !s100 LN9MoMYnDd^5UPKV9bjNL3
 Eunite_de_traitement_entity
-Z37 w1718792048
+Z39 w1718792048
 R2
 R3
-Z38 8../../src/Partie_1_Unite_De_Traitement_SRC/Unite_de_Traitement.vhdl
-Z39 F../../src/Partie_1_Unite_De_Traitement_SRC/Unite_de_Traitement.vhdl
+Z40 8../../src/Partie_1_Unite_De_Traitement_SRC/Unite_de_Traitement.vhdl
+Z41 F../../src/Partie_1_Unite_De_Traitement_SRC/Unite_de_Traitement.vhdl
 l0
 L5
 V[TSj`2a1IINSB^i:0ODIU1
@@ -221,8 +221,8 @@ Aunite_de_traitement_architecture
 R19
 R15
 R9
-R32
-R33
+R34
+R35
 R2
 R3
 R24
@@ -236,12 +236,40 @@ R10
 R11
 R7
 R8
-Evaleur_initialisee_banc_de_registre_entity
-Z40 w1718625407
+Eunite_de_traitement_test_bench
+Z42 w1718797678
 R2
 R3
-Z41 8../../src/Partie_1_Unite_De_Traitement_SRC/Banc_de_Registre_Valeur_Initialisee.vhdl
-Z42 F../../src/Partie_1_Unite_De_Traitement_SRC/Banc_de_Registre_Valeur_Initialisee.vhdl
+R21
+R22
+l0
+L5
+V2[Ki:>`d_DFanohRb_5KX2
+R6
+31
+R7
+R8
+!s100 4FGLDDjeabW:F7Eim3E^E0
+Atest_bench_unite_de_traitement_architecture
+R2
+R3
+DEx4 work 30 unite_de_traitement_test_bench 0 22 2[Ki:>`d_DFanohRb_5KX2
+l18
+L8
+V6_D?9R@IF>La`^RGc[lY<1
+R6
+31
+R10
+R11
+R7
+R8
+!s100 WeY5aS0DdgQl@2X<[bWM22
+Evaleur_initialisee_banc_de_registre_entity
+Z43 w1718625407
+R2
+R3
+Z44 8../../src/Partie_1_Unite_De_Traitement_SRC/Banc_de_Registre_Valeur_Initialisee.vhdl
+Z45 F../../src/Partie_1_Unite_De_Traitement_SRC/Banc_de_Registre_Valeur_Initialisee.vhdl
 l0
 L5
 V6P>ZVEk^:8k9P]iVFTUEC1
@@ -253,7 +281,7 @@ R8
 Abanc_de_registre_architecture
 R2
 R3
-R33
+R35
 l26
 L19
 Vg=mWJ:nhM3hI`;7L^gRGz3

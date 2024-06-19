@@ -54,71 +54,85 @@ UUT_THE_HORLOGE : entity work.Tic_Tac_entity -- Horloge
 
 Test_bench_Unite_de_Traitement : process
 begin
-    -- Grosse Initialisaiton au demarrage
+-- Partie Externe sur S
+    -- Initialisation au demarrage
     wait for 1 ns;
-    SIGNAL_Test_Bench_Rst_R_UT <= '1';
     SIGNAL_Test_Bench_Rst_M_UT <= '1';
     wait for 1 ns;
-    SIGNAL_Test_Bench_Rst_R_UT <= '0';
+    SIGNAL_Test_Bench_Rst_R_UT <= '1';
+    wait for 1 ns;
     SIGNAL_Test_Bench_Rst_M_UT <= '0';
-    wait for 10 ns;
+    wait for 1 ns;
+    SIGNAL_Test_Bench_Rst_R_UT <= '0';
+    wait for 1 ns;
 
-    -- Addition 2 Registres
+    -- Addition 2 Registres nulles pour verifier les drapeaux
     SIGNAL_Test_Bench_WE_UT <= '1';
-    SIGNAL_Test_Bench_Ra_UT <= "0000";
-    SIGNAL_Test_Bench_Rb_UT <= "0001";
+    SIGNAL_Test_Bench_Ra_UT <= "1111";
+    SIGNAL_Test_Bench_Rb_UT <= "0111";
     SIGNAL_Test_Bench_Rw_UT <= "0010";
-    SIGNAL_Test_Bench_OP_UAL_UT <= "000";  -- ADD
+    SIGNAL_Test_Bench_OP_UAL_UT <= "000";  -- Y = A + B 
     wait for 22 ns;
     assert SIGNAL_Test_Bench_S_UT = x"0000_0000" report "Addition 2 Registre incorrecte" severity error;
 
-    -- Addition Registre + Valeur immediate
+    -- Addition Registre + Valeur immediate 1
     SIGNAL_Test_Bench_OP_1_Mux <= '1';
-    SIGNAL_Test_Bench_Imm_UT <= x"0001";
+    SIGNAL_Test_Bench_Imm_UT <= x"0301";
     SIGNAL_Test_Bench_Ra_UT <= "0010";
     SIGNAL_Test_Bench_Rw_UT <= "0011";
-    SIGNAL_Test_Bench_OP_UAL_UT <= "000";  -- ADD
+    SIGNAL_Test_Bench_OP_UAL_UT <= "000";  -- Y = A + B 
     wait for 22 ns;
-    assert SIGNAL_Test_Bench_S_UT = x"0000_0001" report "Addition Registre + Valeur immediate incorrecte" severity error;
+    assert SIGNAL_Test_Bench_S_UT = x"0000_0301" report "Addition Registre + Valeur immediate incorrecte" severity error;
+
+    -- Addition Registre + Valeur immediate 2
+    SIGNAL_Test_Bench_OP_1_Mux <= '1';
+    SIGNAL_Test_Bench_Imm_UT <= x"04F0";
+    SIGNAL_Test_Bench_Ra_UT <= "0010";
+    SIGNAL_Test_Bench_Rw_UT <= "1000";
+    SIGNAL_Test_Bench_OP_UAL_UT <= "000";  -- Y = A + B 
+    wait for 22 ns;
+    assert SIGNAL_Test_Bench_S_UT = x"0000_04F0" report "Addition Registre + Valeur immediate incorrecte" severity error;
+    
 
     -- Soustraction 2 Registres
     SIGNAL_Test_Bench_OP_1_Mux <= '0';
-    SIGNAL_Test_Bench_Ra_UT <= "0011";
-    SIGNAL_Test_Bench_Rb_UT <= "0001";
-    SIGNAL_Test_Bench_Rw_UT <= "0100";
-    SIGNAL_Test_Bench_OP_UAL_UT <= "010";  -- SUB
+    SIGNAL_Test_Bench_Ra_UT <= "1000";
+    SIGNAL_Test_Bench_Rb_UT <= "0011";
+    SIGNAL_Test_Bench_Rw_UT <= "1000";
+    SIGNAL_Test_Bench_OP_UAL_UT <= "010";  -- Y = A - B 
     wait for 22 ns;
-    assert SIGNAL_Test_Bench_S_UT = std_logic_vector(to_unsigned(1, 32)) report "Soustraction 2 Registres incorrecte" severity error;
+    assert SIGNAL_Test_Bench_S_UT = x"0000_01EF" report "Soustraction 2 Registres incorrecte" severity error;
 
     -- Soustraction Valeur immediate + Registre 
     SIGNAL_Test_Bench_OP_1_Mux <= '1';
     SIGNAL_Test_Bench_Imm_UT <= x"0001";
-    SIGNAL_Test_Bench_Ra_UT <= "0100";
+    SIGNAL_Test_Bench_Ra_UT <= "0011";
     SIGNAL_Test_Bench_Rw_UT <= "0101";
-    SIGNAL_Test_Bench_OP_UAL_UT <= "010";  -- SUB
+    SIGNAL_Test_Bench_OP_UAL_UT <= "010";  -- Y = A - B 
     wait for 22 ns;
-    assert SIGNAL_Test_Bench_S_UT = std_logic_vector(to_unsigned(0, 32) - to_unsigned(1, 32)) report "Soustraction Valeur immediate + Registre incorrecte" severity error;
+    assert SIGNAL_Test_Bench_S_UT = x"0000_0300" report "Soustraction Valeur immediate + Registre incorrecte" severity error;
 
+-- Partie interne Memoir + Registre
     -- Copie Registre
-    SIGNAL_Test_Bench_OP_UAL_UT <= "011";  -- COPY
+    SIGNAL_Test_Bench_OP_UAL_UT <= "011";  -- Y = A
     SIGNAL_Test_Bench_Ra_UT <= "0101";
     SIGNAL_Test_Bench_Rw_UT <= "0110";
     wait for 22 ns;
-    assert SIGNAL_Test_Bench_S_UT = x"0000_0000" report "Copie Registre incorrecte" severity error;
+    assert SIGNAL_Test_Bench_S_UT = x"0000_0300" report "Copie Registre incorrecte" severity error;
 
     -- Ecriture Registre to Memoire
-    SIGNAL_Test_Bench_WrEN_UT <= '1';
+    SIGNAL_Test_Bench_WrEN_UT <= '1'; -- Ecriture
     SIGNAL_Test_Bench_Addr_UT <= "000001";
     SIGNAL_Test_Bench_Rb_UT <= "0110";
     wait for 22 ns;
-    assert SIGNAL_Test_Bench_S_UT = x"0000_0000" report "Ecriture Mot dans Memoire incorrecte" severity error;
+    SIGNAL_Test_Bench_WrEN_UT <= '1';
+    assert SIGNAL_Test_Bench_S_UT = x"0000_0300" report "Ecriture Mot dans Memoire incorrecte" severity error;
 
     -- Lecture Mot to Registre
-    SIGNAL_Test_Bench_WrEN_UT <= '0';
     SIGNAL_Test_Bench_Addr_UT <= "000001";
     SIGNAL_Test_Bench_Rw_UT <= "0111";
-    wait for 22 ns;
-    assert SIGNAL_Test_Bench_S_UT = x"0000_0000" report "Lecture Mot to Memory incorrecte" severity error;
+    wait for 32 ns;
+    assert SIGNAL_Test_Bench_S_UT = x"0000_0300" report "Lecture Mot to Memory incorrecte" severity error;
 
     wait;
 end process Test_bench_Unite_de_Traitement;
