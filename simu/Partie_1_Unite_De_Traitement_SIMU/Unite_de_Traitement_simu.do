@@ -9,6 +9,7 @@ vcom -93 ../../src/Partie_1_Unite_De_Traitement_SRC/UAL_Banc_de_Registre.vhdl
 vcom -93 ../../src/Partie_1_Unite_De_Traitement_SRC/Mux_2_to_1_N_Bits.vhdl
 vcom -93 ../../src/Partie_1_Unite_De_Traitement_SRC/Extension_de_Signe.vhdl
 vcom -93 ../../src/Partie_1_Unite_De_Traitement_SRC/Memoire_de_donnees.vhdl
+vcom -93 ../../src/Partie_1_Unite_De_Traitement_SRC/Unite_de_Traitement.vhdl
 vcom -93 Unite_de_Traitement_TEST_BENCH.vhdl
 
 # Simulation

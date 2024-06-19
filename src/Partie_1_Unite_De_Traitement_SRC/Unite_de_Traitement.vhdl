@@ -35,11 +35,11 @@ architecture Unite_de_Traitement_architecture of Unite_de_Traitement_entity is
 -- Content
 begin
 
-    UUT_Banc_de_Registre : entity work.Banc_de_Registre_entity
+    UUT_Banc_de_Registre : entity work.Valeur_Initialisee_Banc_de_Registre_entity
         port map
         (
             Clk_BR => Clk_UT,
-            Rst_BR => Rst_UT,
+            Rst_BR => Rst_R_UT,
             WE_BR  => WE_UT,
 
             Ra_BR => Ra_UT,
@@ -54,7 +54,7 @@ begin
     UUT_UAL : entity work.UAL_Unite_Arithmetique_et_Logique_entity
         port map
         (
-            OP_UAL => OP_UT,
+            OP_UAL => OP_UAL_UT,
             A_UAL => SIGNAL_A_UT,
             B_UAL => SIGNAL_B_Mux_1_UT,
             S_UAL => SIGNAL_S_UT,
@@ -115,5 +115,4 @@ begin
             S_UT <= SIGNAL_W_Mux_2_UT; -- Copie de S pour etre visible sur le chronogramme
         end if;
     end process;
-
 end Unite_de_Traitement_architecture;
