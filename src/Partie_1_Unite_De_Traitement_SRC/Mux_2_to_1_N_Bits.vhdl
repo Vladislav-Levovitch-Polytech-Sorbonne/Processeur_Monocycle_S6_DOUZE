@@ -4,8 +4,8 @@ use ieee.numeric_std.all;
 
 entity Mux_2_to_1_N_Bits_entity is
     
-    generic( Mux_N : integer := 4); -- Prevision selection offset ou addresse a choisir sur 4 bits
-
+    generic( Mux_N : integer := 32); -- Prevision selection offset ou addresse a choisir sur 4 bits
+-- Pour l UT on a changer N de 4 a 32 Faire attention avec le TestBench precedent
     port 
     (
         Mux_A, Mux_B : in std_logic_vector( Mux_N-1 downto 0 );
